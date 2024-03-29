@@ -69,15 +69,13 @@ export default function Reportpage() {
 
   return (
     <>
-      {/* {authState === "loading" && (
+      {authState === "loading" && (
         <div>
           <LoaderRipple />
         </div>
-      )} */}
-      {/* {authState === "loggedin" &&  */}
-      <ReportpageInner />
-      {/* } */}
-      {/* {authState === "notloggedin" && router.push("/login")} */}
+      )}
+      {authState === "loggedin" && <ReportpageInner />}
+      {authState === "notloggedin" && router.push("/login")}
     </>
   );
 }

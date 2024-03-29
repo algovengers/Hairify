@@ -47,15 +47,13 @@ export default function Dashboard() {
 
   return (
     <>
-      {/* {authState === "loading" && (
+      {authState === "loading" && (
         <div>
           <LoaderRipple />
         </div>
-      )} */}
-      {/* {authState === "loggedin" &&  */}
-      <DashboardInner />
-      {/* } */}
-      {/* {authState === "notloggedin" && router.push("/login")} */}
+      )}
+      {authState === "loggedin" && <DashboardInner />}
+      {authState === "notloggedin" && router.push("/login")}
     </>
   );
 }
