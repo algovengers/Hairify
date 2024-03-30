@@ -56,7 +56,7 @@ function HeaderButton({
 }) {
   const router = useRouter();
 
-  const handleOnClick = () => {
+  const handleOnClick = (url: any) => {
     if (onClickFunction !== undefined) {
       onClickFunction();
     } else {
@@ -66,7 +66,7 @@ function HeaderButton({
 
   return (
     <button
-      onClick={handleOnClick}
+      onClick={() => handleOnClick(url)}
       className=" no-underline text-black"
       key={text}
     >
