@@ -64,6 +64,7 @@ function HeaderButton({
     } else {
       console.log("sf", url);
       router.push(url.toString());
+
     }
   };
 
