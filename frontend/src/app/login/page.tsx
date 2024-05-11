@@ -139,11 +139,5 @@ function LoginInner() {
         </div>
       </div>
     </>
-
-
   );
 }
-
-
-
-

@@ -157,6 +157,5 @@ function SignupInner() {
         </div>
       </div>
     </>
-
   );
 }
