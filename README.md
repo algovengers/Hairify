@@ -76,7 +76,7 @@ Hairify application runs on 2 server
     - Do `pip install -r requirements.txt`
     - Create a .env file and add all the variables of .env.sample file with relevant keys
     - Do `cd hairify` in backend
-    - Finally do `python manage.py runserver ` to start the server
+    - Finally do `python manage.py runserver` to start the server
 
 
 ## Website Preview
