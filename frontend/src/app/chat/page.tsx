@@ -356,6 +356,13 @@ function ChatpageInner() {
               />
             ))
           }
+          {chatState === "busy" ?
+          <div className='flex space-x-2 items-center my-5'>
+             <div className='h-2 w-2 bg-black rounded-full animate-bounce [animation-delay:-0.3s]'></div>
+             <div className='h-2 w-2 bg-black rounded-full animate-bounce [animation-delay:-0.15s]'></div>
+             <div className='h-2 w-2 bg-black rounded-full animate-bounce'></div>
+          </div>
+            : ""}
         </div>
         <div className="fixed bottom-4 p-[6px] w-[calc(100%-16px*2)] bg-white shadow-[0_0_5px_3px_rgba(0,0,0,0.1),0_0_1px_1px_rgba(0,0,0,0.1)] rounded-lg">
           <form
