@@ -98,7 +98,3 @@ Hairify application runs on 2 server
 
 
 
-
-
-
-
