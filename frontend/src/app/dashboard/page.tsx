@@ -15,11 +15,11 @@ import Recordviewer from "@/components/Recordviewer";
 import LoaderRipple from "@/components/LoaderRipple";
 import { useDataContext } from "@/context/dataContext";
 import { useRouter } from "next/navigation";
+import DashboardActionButton from "@/dashboard/dashboard-action-button";
 
 interface Record {
   timestamp: string;
   analysis: string;
-
 }
 
 let dummyData = [
@@ -98,6 +98,7 @@ function DashboardInner() {
     <div className="px-4 bg-zinc-100 flex-grow pagecont">
       <div className="py-[65px] min-h-full">
         <div className=" my-3 mx-4">
+          <DashboardActionButton />
           <div className="fixed">
             <Recordviewer ref={dialogTrigger} data={dialogData} />
           </div>

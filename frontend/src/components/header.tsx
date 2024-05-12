@@ -40,15 +40,14 @@ function Userbuttons() {
       )}
       {authState === "loggedin" && (
         <>
-          <HeaderButton text="Chatbot" url="/chat" />
-          <HeaderButton text="Generate Report" url="/report" />
+          <HeaderButton text="Dashboard" url="/dashboard" />
         </>
       )}
       {/* <HeaderButton text="Login" url="/login" /> */}
     </div>
   );
 }
-function HeaderButton({
+export function HeaderButton({
   text,
   url,
   onClickFunction,
