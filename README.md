@@ -96,9 +96,3 @@ Hairify application runs on 2 server
 #### Report Histories
 ![Screenshot from 2024-03-30 11-30-44](https://github.com/algovengers/Hairify/assets/92659226/c94ff965-8f56-4c42-a562-5857a18de359)
 
-
-
-
-
-
-
