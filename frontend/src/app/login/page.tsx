@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { useDataContext } from "@/context/dataContext";
 
@@ -50,8 +50,12 @@ function LoginInner() {
       setLogginIn(false);
       window.location.reload();
       // router.push('/chat')
-    } catch (error) {
-      setError((error as Error).message);
+    } catch (error: any) {
+      if (error.response && error.response.status === 401) {
+        setError("Invalid email or password. Please try again.");
+      } else {
+        setError("An error occurred. Please try again later.");
+      }
       setLogginIn(false);
     }
   };
@@ -83,9 +87,7 @@ function LoginInner() {
             placeholder="password"
           />
           <button
-            className={`bg-black ${
-              loggingIn ? "bg-gray-600" : "bg-black"
-            } text-white p-2 w-2/5`}
+            className={`bg-black ${loggingIn ? "bg-gray-600" : "bg-black"} text-white p-2 w-2/5`}
             onClick={handleLogin}
           >
             {!loggingIn ? "Login" : "Logging in..."}
