@@ -127,7 +127,6 @@ export default function Home() {
         true and to account.......
       </div>
       <iframe src='https://my.spline.design/robotfollowcursorforlandingpage-6f49c9201d83171752a6b15de316a54b/' 
-      frameBorder='0'
        width='450px' 
        height='330px'
        title='Interactive 3D model of a robot following cursor for footer'
