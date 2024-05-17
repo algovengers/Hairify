@@ -102,20 +102,36 @@ def imageInput(request):
 # {"message":"https://th.bing.com/th/id/OIP.FXBuJ8RmUJkOTSC-qd-M6wHaEK?rs=1&pid=ImgDetMain", "id": 69}
     try:
         id = request.user.id
+        context = request.data['problem']
+        print(context)
         image = request.FILES['image']
         upload_result = cloudinary.uploader.upload(image, folder="hairfall")
         picture_url = upload_result['secure_url']
-
         llm = ChatGoogleGenerativeAI(model="gemini-pro-vision") 
         
         message = HumanMessage(
-        content=[
-            {
-                "type": "text",
-                "text": "you are an ai assistant, write an essay on the image",
-            },  # You can optionally provide text parts
-            {"type": "image_url", "image_url": picture_url},
-        ]
+            content=[
+                {
+                    "type": "text",
+                    "text": "Assume that you are a hair expert and doctor.",
+                },
+                {
+                    "type":"text",
+                    "text":"This is an image of my hair condition. I am facing problem as described below."
+                },
+                {
+                    "type": "image_url", 
+                    "image_url": picture_url,
+                },
+                {
+                    "type": "text",
+                    "text": "Problem description:" + context,
+                },
+                {
+                    "type": "text",
+                    "text": "Please generate a comprehensive report on a specific hair-related issue I might be experiencing. The report should cover: 1) Potential causes of the problem. 2) Possible solutions and treatments. 3) Recommended tests to diagnose the issue.4) Effective home remedies and preventive measures. 5) Dietary and nutritional advice to support hair health. Ensure the report is detailed and actionable.", 
+                },
+            ]
         )
         # parser = JsonOutputParser()
         # chain =  llm | parser
