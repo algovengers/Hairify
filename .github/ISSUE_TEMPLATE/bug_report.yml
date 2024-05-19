@@ -34,7 +34,7 @@ body:
     attributes:
       label: "Record"
       options:
-        - label: I have checked the existing [issues](https://github.com/RangojuNandini/test-workflow/issues)
+        - label: I have checked the existing [issues](https://github.com/algovengers/Hairify/issues)
           required: true
 
         
