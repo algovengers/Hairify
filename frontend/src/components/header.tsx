@@ -7,19 +7,19 @@ import Link from "next/link";
 
 export default function Header() {
   return (
-    <Link href="/">
       <div className="fixed h-[65px] flex justify-between w-full bg-[rgba(255,255,255,0.3)] z-50 backdrop-blur-md headerbar shadow-[rgba(0,0,0,0.1)_0_1px_10px]">
         <Logo />
         <Userbuttons />
       </div>
-    </Link>
   );
 }
 function Logo() {
   return (
-    <div className=" m-2 flex gap-2">
-      <Image src={icon} alt="Icon" className=" h-full w-auto" />
-      <div className="py-3 text-xl hidden md:block">Hairify</div>
+    <div className="m-2 flex">
+      <Link href="/" className="flex gap-2">
+        <Image src={icon} alt="Icon" className="h-full w-auto" />
+        <div className="py-3 text-xl hidden md:block">Hairify</div>
+      </Link>
     </div>
   );
 }
