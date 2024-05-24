@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { useEffect} from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Link from "next/link";
 
 export default function Home() {
   const router = useRouter();
@@ -116,7 +117,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="my-4 text-center">Made by Algovengers</div>
+      <div className="my-4 text-center">Made by <Link href="https://github.com/algovengers/Hairify" className="no-underline hover:underline">Algovengers</Link></div>
     </div>
   );
 }
