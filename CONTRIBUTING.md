@@ -44,4 +44,15 @@ in case you are stuck:
 
 <br>
 
+## **Resolving Merge Conflicts**
+
+1. First, ensure that the upstream remote is set. If it’s not set yet, add it by running the following command: `git remote add upstream https://github.com/algovengers/Hairify`
+2. Do `git fetch upstream` on your main branch
+3. Checkout your working branch and rebase it from upstream/main by using the command: `git rebase upstream/main`
+4. Resolve Merge conflicts in your editor.
+5. Do `git rebase --continue` after resolving all merge conflicts 
+6. Force push to your branch by using this command `git push origin <your-branch> --force` 
+
+<br>
+
 # **Thank you for contributing💗** 
