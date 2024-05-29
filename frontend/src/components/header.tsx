@@ -8,22 +8,19 @@ import Link from "next/link";
 
 export default function Header() {
   return (
-    <div className="fixed h-[65px] flex justify-between items-center py-9 md:py-12 px-4 sm:px-8 xl:px-16 w-full bg-[rgba(255,255,255,0.3)] z-50 backdrop-blur-md headerbar shadow-[rgba(0,0,0,0.1)_0_1px_10px]">
-      <Link href="/">
-        <Logo />
-      </Link>
-      <div className="flex items-center">
-        <Userbuttons />
-      </div>
+    <div className="fixed h-[65px] flex justify-between w-full bg-[rgba(255,255,255,0.3)] z-50 backdrop-blur-md headerbar shadow-[rgba(0,0,0,0.1)_0_1px_10px]">
+      <Logo />
+      <Userbuttons />
     </div>
   );
 }
-
 function Logo() {
   return (
-    <div className="sm:m-2 flex justify-center items-center gap-4">
-      <Image src={icon} alt="Icon" width={200} height={200} className="w-[3rem] sm:w-[3.5rem] lg:w-[4rem]" />
-      <div className="py-3 text-2xl hidden md:block">Hairify</div>
+    <div className="m-2 flex">
+      <Link href="/" className="flex gap-2">
+        <Image src={icon} alt="Icon" className="h-full w-auto" />
+        <div className="py-3 text-xl hidden md:block">Hairify</div>
+      </Link>
     </div>
   );
 }
