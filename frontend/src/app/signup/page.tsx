@@ -4,6 +4,8 @@ import Link from "next/link";
 import axios from "axios";
 import { useDataContext } from "@/context/dataContext";
 import { useRouter } from "next/navigation";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Signup() {
   const router = useRouter();
@@ -11,6 +13,18 @@ export default function Signup() {
 
   return (
     <>
+    <ToastContainer 
+       position="top-center"
+       autoClose={3000}
+       hideProgressBar={true}
+       newestOnTop={true}
+       closeOnClick
+       rtl={false}
+       pauseOnFocusLoss
+       draggable
+       pauseOnHover
+       theme="colored"
+      />
       {(authState === "loading" || authState === "notloggedin") && (
         <SignupInner />
       )}
@@ -32,18 +46,22 @@ function SignupInner() {
     e.preventDefault();
     if (email.length === 0) {
       setError("*Email can't be empty");
+      toast.error("Email can't be empty");
       return;
     }
     if (username.length === 0) {
       setError("* Username can't be empty");
+      toast.error(" Username can't be empty");
       return;
     }
     if (password.length === 0) {
       setError("* Password can't be empty");
+      toast.error("Password can't be empty");
       return;
     }
     if (password !== confirmPassword) {
       setError("* Passwords do not match");
+      toast.error("Passwords do not match");
       return;
     }
 
@@ -58,9 +76,11 @@ function SignupInner() {
         }
       );
       setSigningUp(false);
+      toast.success("Signup successful!");
       router.push("/login");
-    } catch (error) {
+    } catch (error:any) {
       setSigningUp(false);
+      toast.error(`Signup failed: ${error.message}`);
       setError((error as Error).message);
     }
   };
