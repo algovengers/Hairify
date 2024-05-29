@@ -26,7 +26,7 @@ function SignupInner() {
   const [username, setUsername] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [Signingup, setSigningUp] = useState<boolean>(false);
-  const handleSignup= async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handleSignup = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     if (email.length == 0) {
       setError("*Email can't be empty");
