@@ -25,7 +25,8 @@ function LoginInner() {
   const [error, setError] = useState<string>("");
   const [loggingIn, setLogginIn] = useState<boolean>(false);
   const router = useRouter();
-  const handleLogin= async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  
+  const handleLogin = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     if (email.length == 0) {
       setError("*Email can't be empty");
@@ -35,7 +36,7 @@ function LoginInner() {
       setError("*Password can't be empty");
       return;
     }
-    //call the api here
+    // call the api here
     setLogginIn(true);
     try {
       const data = await axios.post(
@@ -56,11 +57,24 @@ function LoginInner() {
       setLogginIn(false);
     }
   };
-  return (
 
+  return (
     <>
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 homepage">
-        <div className="text-xs text-red-900 h-2">{error}</div>
+        {error && (
+          <div
+            style={{
+              color: '#b91c1c', // Tailwind's red-900
+              backgroundColor: '#fee2e2', // Tailwind's red-100
+              padding: '0.5rem', // p-2
+              borderRadius: '0.375rem', // rounded-md
+              marginBottom: '1rem', // mb-4
+              fontSize: '0.75rem' // text-xs
+            }}
+          >
+            {error}
+          </div>
+        )}
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
             Sign in to your Hairify account
@@ -89,7 +103,7 @@ function LoginInner() {
                   className="block px-3 w-full rounded-md border-0 py-1.5 text-gray-900 placeholder:text-gray-400 text-sm sm:leading-6"
                   style={{ outline: 'none' }}
                 />
-                  </div>
+              </div>
             </div>
 
             <div>
@@ -129,7 +143,7 @@ function LoginInner() {
           </form>
 
           <p className="mt-10 text-center text-sm text-gray-500">
-          Don&apos;t have an account?{' '}
+            Don&apos;t have an account?{' '}
             <Link href="signup" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
               SignUp
             </Link>
