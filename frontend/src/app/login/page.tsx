@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { useDataContext } from "@/context/dataContext";
 
@@ -25,7 +25,7 @@ function LoginInner() {
   const [error, setError] = useState<string>("");
   const [loggingIn, setLogginIn] = useState<boolean>(false);
   const router = useRouter();
-  const handleLogin= async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handleLogin = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     if (email.length == 0) {
       setError("*Email can't be empty");
@@ -51,8 +51,12 @@ function LoginInner() {
       setLogginIn(false);
       window.location.reload();
       // router.push('/chat')
-    } catch (error) {
-      setError((error as Error).message);
+    } catch (error: any) {
+      if (error.response && error.response.status === 401) {
+        setError("Invalid email or password. Please try again.");
+      } else {
+        setError("An error has occurred. Please try again later.");
+      }
       setLogginIn(false);
     }
   };
@@ -89,7 +93,7 @@ function LoginInner() {
                   className="block px-3 w-full rounded-md border-0 py-1.5 text-gray-900 placeholder:text-gray-400 text-sm sm:leading-6"
                   style={{ outline: 'none' }}
                 />
-                  </div>
+              </div>
             </div>
 
             <div>
@@ -129,7 +133,7 @@ function LoginInner() {
           </form>
 
           <p className="mt-10 text-center text-sm text-gray-500">
-          Don&apos;t have an account?{' '}
+            Don&apos;t have an account?{' '}
             <Link href="signup" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
               SignUp
             </Link>
