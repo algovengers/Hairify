@@ -324,6 +324,8 @@ function ChatpageInner() {
     setChatState("idle");
   };
 
+  const [inputValue, setInputValue] = useState("");
+
   return (
     <div
       className="px-4 bg-zinc-100 flex-grow pagecont"
@@ -390,14 +392,17 @@ function ChatpageInner() {
               className=" appearance-none border-none outline-none w-full bg-transparent mx-[6px]"
               placeholder="Describe your problem ..."
               value={message}
-              onChange={(e) => setMessage(e.target.value)}
+              onChange={(e) => {
+                setMessage(e.target.value);
+                setInputValue(e.target.value);
+              }}
             />
             {/* <ImageChatPopup chatState={chatState} setChatState={setChatState} /> */}
             <Button
               onClick={() => {
                 handleClick();
               }}
-              disabled={chatState === "busy" || fetchingChat ? true : false}
+              disabled={ chatState === "busy" || fetchingChat || !inputValue ? true : false }
             >
               <FiArrowRight />
             </Button>
