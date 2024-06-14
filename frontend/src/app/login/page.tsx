@@ -4,6 +4,8 @@ import Link from "next/link";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useDataContext } from "@/context/dataContext";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Login() {
   const router = useRouter();
@@ -11,12 +13,14 @@ export default function Login() {
 
   return (
     <>
-      {(authState === "loading" || authState === "notloggedin") && (
-        <LoginInner />
-      )}
-      {authState === "loggedin" && router.push("/")}
-    </>
-  );
+    <ToastContainer />
+    {(authState === "loading" || authState === "notloggedin") && (
+      <LoginInner />
+    )}
+    {authState === "loggedin" && router.push("/")}
+  </>
+);
+
 }
 
 function LoginInner() {
@@ -26,13 +30,13 @@ function LoginInner() {
   const [loggingIn, setLogginIn] = useState<boolean>(false);
   const router = useRouter();
   const handleLogin= async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    e.preventDefault();
+    // e.preventDefault();
     if (email.length == 0) {
-      setError("*Email can't be empty");
+      toast.error("Email can't be empty");
       return;
     }
     if (password.length == 0) {
-      setError("*Password can't be empty");
+      toast.error("Password can't be empty");
       return;
     }
     //call the api here
@@ -89,6 +93,7 @@ function LoginInner() {
                   className="block px-3 w-full rounded-md border-0 py-1.5 text-gray-900 placeholder:text-gray-400 text-sm sm:leading-6"
                   style={{ outline: 'none' }}
                 />
+                 
                   </div>
             </div>
 
