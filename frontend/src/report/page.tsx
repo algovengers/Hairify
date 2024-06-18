@@ -43,11 +43,17 @@ function InputFile({ selectedFile, setSelectedFile }: any) {
     const file = e.target.files?.[0];
 
     if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setSelectedFile(reader.result as string);
-      };
-      reader.readAsDataURL(file);
+      const validExtensions = ['image/jpeg', 'image/png'];
+      if (validExtensions.includes(file.type)) {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          setSelectedFile(reader.result as string);
+        };
+        reader.readAsDataURL(file);
+      } else {
+        alert('Please upload a file with .jpg or .png extension.');
+        e.target.value = ''; // Clear the input
+      }
     }
   };
 
