@@ -397,7 +397,9 @@ function ChatpageInner() {
               onClick={() => {
                 handleClick();
               }}
-              disabled={chatState === "busy" || fetchingChat ? true : false}
+              disabled={
+                chatState === "busy" || fetchingChat || !message ? true : false
+              }
             >
               <FiArrowRight />
             </Button>
