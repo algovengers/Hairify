@@ -22,7 +22,7 @@ from django.views.decorators.csrf import csrf_exempt
 from langchain_core.output_parsers import JsonOutputParser
 
 
-
+import asyncio
 from .models import report,chats
 from authentication.models import User
 from .serializers import ReportSerializer
@@ -93,6 +93,18 @@ def historyMessages(request):
     
     return Response(serialized_data)
 
+@api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
+def deleteHistory(request):
+    user_id = request.user.id
+    print(user_id)
+    postgres_url = str(os.getenv("POSTGRE_URI"))
+    message = PostgresChatMessageHistory(connection_string = postgres_url,
+        session_id=str(user_id))
+    
+    asyncio.run(message.aclear())
+    
+    return Response("Chat history deleted")
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])

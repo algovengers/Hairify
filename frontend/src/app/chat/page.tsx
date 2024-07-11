@@ -9,6 +9,8 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  DialogFooter,
+  DialogClose,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -16,6 +18,7 @@ import { Label } from "@/components/ui/label";
 import { FaImage } from "react-icons/fa6";
 import { PiStarFourFill } from "react-icons/pi";
 import { FiArrowRight } from "react-icons/fi";
+import { Trash } from "lucide-react";
 import Header from "@/components/header";
 import axios from "axios";
 import Router from "next/router";
@@ -324,6 +327,32 @@ function ChatpageInner() {
     setChatState("idle");
   };
 
+  const handleChatDelete = async () => {
+    setChatState("busy");
+
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_BACKEND_PATH}/chatapi/chat/delete`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      );
+      // Check if the response is ok
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      
+      setChat([]);
+    } catch (error) {
+      console.error("Error deleting chat history:", error);
+    }
+
+    setChatState("idle");
+  };
+
   return (
     <div
       className="px-4 bg-zinc-100 flex-grow pagecont"
@@ -393,6 +422,41 @@ function ChatpageInner() {
               onChange={(e) => setMessage(e.target.value)}
             />
             {/* <ImageChatPopup chatState={chatState} setChatState={setChatState} /> */}
+            <Dialog>
+              <DialogTrigger disabled={chatState === "busy" || chat.length === 0}>
+                <Button 
+                  type="button"
+                  variant="outline"
+                  disabled={chatState === "busy" || chat.length === 0}
+                >
+                  <Trash />
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="max-w-md">
+                <DialogHeader>
+                  <DialogTitle>Are you sure?</DialogTitle>
+                  <DialogDescription>
+                    This action will permanently delete your chat history.
+                  </DialogDescription>
+                </DialogHeader>
+                <DialogFooter className="sm:justify-start">
+                  <DialogClose asChild>
+                    <Button type="button" variant="outline">
+                      Cancel
+                    </Button>
+                  </DialogClose>
+                  <DialogClose asChild>
+                    <Button 
+                      type="button"
+                      onClick={handleChatDelete}
+                    >
+                      Delete Chat
+                    </Button>
+                  </DialogClose>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
+
             <Button
               onClick={() => {
                 handleClick();
