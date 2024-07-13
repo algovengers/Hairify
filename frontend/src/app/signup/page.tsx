@@ -4,6 +4,8 @@ import Link from "next/link";
 import axios from "axios";
 import { useDataContext } from "@/context/dataContext";
 import { useRouter } from "next/navigation";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Signup() {
   const router = useRouter();
@@ -29,21 +31,21 @@ function SignupInner() {
   const [Signingup, setSigningUp] = useState<boolean>(false);
 
   const handleSignup = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    e.preventDefault();
+    // e.preventDefault();
     if (email.length === 0) {
-      setError("*Email can't be empty");
+      toast.error("Email can't be empty");
       return;
     }
     if (username.length === 0) {
-      setError("* Username can't be empty");
+      toast.error("Username can't be empty");
       return;
     }
     if (password.length === 0) {
-      setError("* Password can't be empty");
+      toast.error("Password can't be empty");
       return;
     }
     if (password !== confirmPassword) {
-      setError("* Passwords do not match");
+      toast.error("Passwords do not match");
       return;
     }
 
@@ -67,6 +69,7 @@ function SignupInner() {
 
   return (
     <>
+     <ToastContainer />
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 homepage">
         <div className="text-xs text-red-900 h-2">{error}</div>
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
