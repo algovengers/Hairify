@@ -4,7 +4,7 @@ import Link from "next/link";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useDataContext } from "@/context/dataContext";
-
+import {FaEye,FaEyeSlash} from 'react-icons/fa6'
 export default function Login() {
   const router = useRouter();
   const { authState } = useDataContext();
@@ -21,6 +21,7 @@ export default function Login() {
 
 function LoginInner() {
   const [email, setEmail] = useState<string>("");
+  const [isVisible, setIsVisible] = useState<boolean>(false);
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [loggingIn, setLogginIn] = useState<boolean>(false);
@@ -98,11 +99,11 @@ function LoginInner() {
                   Password
                 </label>
               </div>
-              <div className="mt-2">
+              <div className="mt-2 relative">
                 <input
                   id="password"
                   name="password"
-                  type="password"
+                  type={`${isVisible?"text":"password"}`}
                   autoComplete="current-password"
                   required
                   placeholder="password"
@@ -114,6 +115,7 @@ function LoginInner() {
                   className="block px-3 w-full rounded-md border-0 py-1.5 text-gray-900 placeholder:text-gray-400 text-sm sm:leading-6"
                   style={{ outline: 'none' }}
                 />
+                {isVisible?<FaEye className="absolute right-[10px] top-[4px] text-[1.5rem] text-[#4f46e5]" onClick={()=>setIsVisible(false)}/>:<FaEyeSlash className="absolute right-[10px] top-[4px] text-[1.5rem] text-[#4f46e5]" onClick={()=>setIsVisible(true)}/>}
               </div>
             </div>
 

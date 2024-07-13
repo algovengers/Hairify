@@ -4,6 +4,7 @@ import Link from "next/link";
 import axios from "axios";
 import { useDataContext } from "@/context/dataContext";
 import { useRouter } from "next/navigation";
+import {FaEye,FaEyeSlash} from 'react-icons/fa6'
 
 export default function Signup() {
   const router = useRouter();
@@ -22,6 +23,9 @@ export default function Signup() {
 function SignupInner() {
   const router = useRouter();
   const [email, setEmail] = useState<string>("");
+  const [isVisible, setIsVisible] = useState<boolean>(false);
+  const [isConfirmVisible, setIsConfirmVisible] = useState<boolean>(false);
+
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [username, setUsername] = useState<string>("");
@@ -123,7 +127,7 @@ function SignupInner() {
               </div>
             </div>
 
-            <div>
+            <div className="relative">
               <div className="flex items-center justify-between">
                 <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
                   Password
@@ -133,7 +137,7 @@ function SignupInner() {
                 <input
                   id="password"
                   name="password"
-                  type="password"
+                  type={`${isVisible?"text":"password"}`}
                   autoComplete="current-password"
                   required
                   placeholder="password"
@@ -145,10 +149,12 @@ function SignupInner() {
                   className="block px-3 w-full rounded-md border-0 py-1.5 text-gray-900 placeholder:text-gray-400 text-sm sm:leading-6"
                   style={{ outline: 'none' }}
                 />
+                {isVisible?<FaEye className="absolute right-[10px] top-[36px] text-[1.5rem] text-[#4f46e5]" onClick={()=>setIsVisible(false)}/>:<FaEyeSlash className="absolute right-[10px] top-[36px] text-[1.5rem] text-[#4f46e5]" onClick={()=>setIsVisible(true)}/>}
+
               </div>
             </div>
 
-            <div>
+            <div className="relative">
               <label htmlFor="confirmPassword" className="block text-sm font-medium leading-6 text-gray-900">
                 Confirm Password
               </label>
@@ -156,7 +162,7 @@ function SignupInner() {
                 <input
                   id="confirmPassword"
                   name="confirmPassword"
-                  type="password"
+                  type={`${isConfirmVisible?"text":"password"}`}
                   autoComplete="confirm-password"
                   required
                   placeholder="confirm password"
@@ -168,6 +174,8 @@ function SignupInner() {
                   className="block px-3 w-full rounded-md border-0 py-1.5 text-gray-900 placeholder:text-gray-400 text-sm sm:leading-6"
                   style={{ outline: 'none' }}
                 />
+                {isConfirmVisible?<FaEye className="absolute right-[10px] top-[36px] text-[1.5rem] text-[#4f46e5]" onClick={()=>setIsConfirmVisible(false)}/>:<FaEyeSlash className="absolute right-[10px] top-[36px] text-[1.5rem] text-[#4f46e5]" onClick={()=>setIsConfirmVisible(true)}/>}
+
               </div>
             </div>
 
