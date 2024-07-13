@@ -4,6 +4,9 @@ import Link from "next/link";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useDataContext } from "@/context/dataContext";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 export default function Login() {
   const router = useRouter();
@@ -11,10 +14,23 @@ export default function Login() {
 
   return (
     <>
+      <ToastContainer 
+       position="top-center"
+       autoClose={3000}
+       hideProgressBar={true}
+       newestOnTop={true}
+       closeOnClick
+       rtl={false}
+       pauseOnFocusLoss
+       draggable
+       pauseOnHover
+       theme="colored"
+      />
       {(authState === "loading" || authState === "notloggedin") && (
         <LoginInner />
       )}
       {authState === "loggedin" && router.push("/")}
+      
     </>
   );
 }
@@ -29,10 +45,12 @@ function LoginInner() {
     e.preventDefault();
     if (email.length == 0) {
       setError("*Email can't be empty");
+      toast.error("Email can't be empty");
       return;
     }
     if (password.length == 0) {
       setError("*Password can't be empty");
+      toast.error("Password can't be empty");
       return;
     }
     //call the api here
@@ -49,9 +67,13 @@ function LoginInner() {
       localStorage.setItem("access", data.data.access);
       localStorage.setItem("refresh", data.data.refresh);
       setLogginIn(false);
-      window.location.reload();
+      toast.success("Login successful!");
+      setTimeout(() => {
+        window.location.reload();
+      }, 1500);
       // router.push('/chat')
     } catch (error) {
+      toast.error("Login failed. Please try again.");
       setError((error as Error).message);
       setLogginIn(false);
     }
