@@ -34,3 +34,19 @@
   background-attachment: fixed;
   backdrop-filter: blur(2px);
 }
+
+::-webkit-scrollbar
+{
+    width: 7.5px;
+}
+
+::-webkit-scrollbar-track
+{
+    background-color: rgb(204 251 241);
+}
+
+::-webkit-scrollbar-thumb
+{
+    background-color: rgb(216 180 254);
+    height: 5px;
+}
