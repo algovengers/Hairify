@@ -39,13 +39,15 @@ function Userbuttons() {
         <HeaderButton text="Login" url="/login" />
       )}
       {authState === "loggedin" && (
-        <HeaderButton text="Dashboard" url="/dashboard" />
+        <>
+          <HeaderButton text="Dashboard" url="/dashboard" />
+        </>
       )}
       {/* <HeaderButton text="Login" url="/login" /> */}
     </div>
   );
 }
-function HeaderButton({
+export function HeaderButton({
   text,
   url,
   onClickFunction,
@@ -64,7 +66,6 @@ function HeaderButton({
     } else {
       console.log("sf", url);
       router.push(url.toString());
-
     }
   };
 
