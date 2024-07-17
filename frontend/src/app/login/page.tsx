@@ -60,7 +60,9 @@ function LoginInner() {
 
     <>
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 homepage">
-        <div className="text-xs text-red-900 h-2">{error}</div>
+      <div>{(error!=="")?(<div className="p-4 mt-8 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 w-2/6 dark:text-red-400" role="alert">
+  {error}
+</div>):""}</div>
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
             Sign in to your Hairify account
