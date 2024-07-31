@@ -11,5 +11,6 @@ urlpatterns = [
 
     path('reporthistory',views.GetReport.as_view(), name="reporthistory"),
 
-
+    path('chat/delete', views.deleteHistory, name="deletehistory")
+    
 ]
