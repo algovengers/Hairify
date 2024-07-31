@@ -1,0 +1,14 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 🐞 Bug Report
+    url: https://github.com/algovengers/Hairify/issues/new?template=bug_report.yml
+    about: Report a bug to help us improve
+  - name:✨ Feature Request
+    url: https://github.com/algovengers/Hairify/issues/new?template=feature_request.yml
+    about: Suggest a new feature or enhancement
+    - name: 🔖Documenation Update
+    url: https://github.com/algovengers/Hairify/issues/new?template=documentation_update.yml
+    about: Improve Documentation
+    - name:👯‍♂️Style Changing Request
+    url: https://github.com/algovengers/Hairify/issues/new?template=style_change.yml
+    about: Suggest a style design
