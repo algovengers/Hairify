@@ -116,7 +116,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="my-4 text-center">Made by Algovengers</div>
+      <div className="my-4 text-center"> Copyright &copy;{new Date().getFullYear()} Made by Algovengers </div>
     </div>
   );
 }
