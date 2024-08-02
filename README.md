@@ -134,8 +134,18 @@ Hairify application runs on 2 server
 ![Screenshot from 2024-03-30 11-30-44](https://github.com/algovengers/Hairify/assets/92659226/c94ff965-8f56-4c42-a562-5857a18de359)
 
 
+<!-- Cotributors -->
+<div>
+  <h2><img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f493/512.webp" width="40" height="40">Our Contributors</h2>
+</div>
 
+We extend our heartfelt gratitude for your invaluable contribution to our project!😊
 
+<div>
+<a href="https://github.com/algovengers/Hairify/graphs/contributors">
+  <img width="90%" src="https://contrib.rocks/image?repo=algovengers/Hairify" />
+</a>
+</div>
 
 
 
